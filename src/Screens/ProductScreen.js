@@ -8,15 +8,20 @@ import Rating from '../components/Rating'
 const ProductScreen = () => {
 
   const params = useParams();
+  //If you need to get the product details from a local file then you could do this
+    //const event = events.find(e => e.id === params.id)
+
+  // Indicating JS runtime that I need a state variable created with name 
+  // product, upon which a local storage is created which is accessible within 
+  // the component
   const [product, setProduct] = useState({})
 
   useEffect(() => {
     const fetchProduct = async () => {
       const {data} = await axios.get(`/api/product/${params.id}`)
-      setProduct(data)
-
-      fetchProduct()
-     }    
+      setProduct(data)      
+     }     
+     fetchProduct()      
    }
   ) 
 

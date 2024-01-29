@@ -20,12 +20,13 @@ const HomeScreen = () => {
 
   })
   
-  const msg = 'Hello';
   return (
     <>
       <h1>Latest Products</h1>
       <Row>
         {
+          // You can get the products either by reading it from a static js file or with the api call through axios.
+          //If reading from a static file, use useParams hook
           products.map( p => (
             <Col sm={12} md={6} lg={4} xl={3}>
               <Product prd={p} />
