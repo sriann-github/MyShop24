@@ -18,7 +18,7 @@ const ProductScreen = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const {data} = await axios.get(`/api/product/${params.id}`)
+      const {data} = await axios.get(`/api/products/${params.id}`)
       setProduct(data)      
      }     
      fetchProduct()      
@@ -68,7 +68,7 @@ const ProductScreen = () => {
             <ListGroup.Item>
               <Row>
                 <Col>
-                  {product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
+                  {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
                 </Col>
               </Row>
             </ListGroup.Item>
