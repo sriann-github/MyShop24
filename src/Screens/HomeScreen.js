@@ -1,10 +1,9 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import axios from 'axios'
 import Product from '../components/Product'
 //import SampleCmp from '../components/SampleCmp'
 import { Col, Row } from 'react-bootstrap'
-import errorMessage from '../components/errorMessage'
+import errorMessage from './components/errorMessage'
 import Loader from '../components/Loader'
 import { listProducts } from '../actions/productActions'
 
@@ -28,6 +27,7 @@ const HomeScreen = () => {
     dispatch(listProducts())
   },[dispatch])
 
+  //useSelector is used to extract data from the redux store
   const productList = useSelector((state) => state.productList )
   const {loading, products, error} = productList
   
