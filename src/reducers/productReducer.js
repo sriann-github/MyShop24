@@ -6,7 +6,6 @@ import { PRODUCT_DETAILS_SUCCESS } from "../constants/productDispatcher";
 import { PRODUCT_DETAILS_REQUEST } from "../constants/productDispatcher";
 
 export const productListReducer = (state = {products: []}, action) => {
-
   switch(action.type){
     case PRODUCT_LIST_REQUEST:
       return {loading: true, products: []}
@@ -26,8 +25,10 @@ export const productDetailsReducer = (state = {product: {reviews: []}}, action) 
   switch(action.type){
     case PRODUCT_DETAILS_REQUEST:
       return {loading: true, ...state}
+
     case PRODUCT_DETAILS_SUCCESS:
       return {loading: false, product: action.payload}
+      
     case PRODUCT_DETAILS_FAIL:
       return {loading:false, error: action.payload }
     default:

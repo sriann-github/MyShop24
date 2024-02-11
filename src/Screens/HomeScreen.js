@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import Product from '../components/Product'
 //import SampleCmp from '../components/SampleCmp'
 import { Col, Row } from 'react-bootstrap'
-import errorMessage from './components/errorMessage'
+import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { listProducts } from '../actions/productActions'
 
@@ -28,7 +28,7 @@ const HomeScreen = () => {
   },[dispatch])
 
   //useSelector is used to extract data from the redux store
-  const productList = useSelector((state) => state.productList )
+  const productList = useSelector((state) => state.productList)
   const {loading, products, error} = productList
   
   return (
@@ -36,7 +36,7 @@ const HomeScreen = () => {
       <h1>Latest Products</h1>        
           {
             loading? (<Loader />):
-            error? (<errorMessage variant='danger'> {error} </errorMessage>) : 
+            error? (<Message variant='danger'> {error} </Message>) : 
             (              
               <Row>
                {products.map( p => (
@@ -48,8 +48,8 @@ const HomeScreen = () => {
             )           
           }
 
-          // You can get the products either by reading it from a static js file or with the api call through axios.
-          //If reading from a static file, use useParams hook
+          {/*You can get the products either by reading it from a static js file or with the api call through axios.
+          If reading from a static file, use useParams hook */}
     </>         
         
   )
