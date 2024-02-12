@@ -13,9 +13,6 @@ const CartScreen = () => {
   const dispatch = useDispatch()
   const productId = params.id
 
-  console.log(`params.id - ${params.id}`)
-  console.log(`productId - ${productId}`)
-
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
   //you have to dispatch addToCart action here to be able to get the cart details from redux store
@@ -35,12 +32,12 @@ const CartScreen = () => {
     dispatch(removeFromCart(id))
   }
   const checkoutHandler = () => {
-    navigate('login?redirect=/shipping')
+    navigate('/login?redirect=/shipping')
   }
 
   return (
     <Row>
-      <Col>
+      <Col md={8}>
        <h1>Shopping Cart </h1>
        {cartItems.length === 0 ? (
         <Message>
@@ -50,8 +47,12 @@ const CartScreen = () => {
         <ListGroup variant='flush'>
           {cartItems.map((item) => (
             <ListGroup.Item key={item.productId}>
-              <Col>
+             <Row>
+              <Col md={2}>
                 <Image src={item.image} alt={item.name} fluid rounded />
+              </Col>
+              <Col md={3}>
+                <Link to={`/product/${item.productId}`}>{item.name}</Link>
               </Col>
               <Col md={2}>${item.price}</Col>
               <Col md={2}>
@@ -71,14 +72,16 @@ const CartScreen = () => {
                   ))}
                 </Form.Control>
               </Col>
-              <Col>
-              <Button
-              type='button'
-              onClick={() => removeFromCartHandler(item.productId)}
-              >
-                <i className='fas-fa-trash'></i>
-              </Button>
+              <Col md={2}>
+                <Button
+                  type='button'
+                  variant='dark'
+                  onClick={() => removeFromCartHandler(item.productId)}
+                  >
+                    <i className='fas-fa-trash'></i>
+                </Button>
               </Col>
+             </Row>
             </ListGroup.Item>
           ))}
         </ListGroup>          
@@ -89,18 +92,20 @@ const CartScreen = () => {
           <ListGroup varian='flush'>
             <ListGroup.Item>
               <h2>
-                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                Subtotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)}) items
               </h2>
               $
-              {cartItems.reduce((acc, item) => acc+item.qty * item.price, 0).toFixed(2)}
+              {cartItems
+              .reduce((acc, item) => acc + item.qty * item.price, 0)
+              .toFixed(2)}
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
-              type='button'
-              className='btn-block'
-              disabled={cartItems.length === 0}
-              onClick={checkoutHandler}>
-                Proceed To Checkout
+                type='button'
+                className='btn-block'
+                disabled={cartItems.length === 0}
+                onClick={checkoutHandler}>
+                  Proceed To Checkout
               </Button>
             </ListGroup.Item>
           </ListGroup>

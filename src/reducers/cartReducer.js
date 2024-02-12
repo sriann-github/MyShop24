@@ -6,16 +6,17 @@ export const cartReducer = (state = {cartItems: []}, action) =>
   {
     case CART_ADD_ITEM:
       const item =  action.payload
-      const existItem = state.cartItems.find(x=>x.product === item.product)
+      const existItem = state.cartItems.find(x => x.productId === item.productId)
       if(existItem)
       {
         item.qty = existItem.qty + item.qty
         return{
           ...state,
-          cartItems: state.cartItems.map(x => x.product === existItem.product ? item : x)
+          cartItems: state.cartItems.map(x => x.productId === item.productId ? item : x)
         }
       }else{
         return {
+          // First it makes a copy of the state items and then creates a property that's an array from the state called cartItems, and then it appends the current object (item) to the array
           ...state,
           cartItems: [...state.cartItems, item]
         }
@@ -23,7 +24,7 @@ export const cartReducer = (state = {cartItems: []}, action) =>
     case CART_REMOVE_ITEM:
       return{
         ...state,
-        cartItems: state.cartItems.filter(x => x.product !== action.payload)
+        cartItems: state.cartItems.filter(x => x.productId !== action.payload)
       }
     case CART_ACTION_FAIL:
       return {...state}

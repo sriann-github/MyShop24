@@ -23,10 +23,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
     payload: 
       error.response && error.response.data.message ? error.response.data.message: error.message
   })
-}
-
-  localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems) )
-}
+}}
 
 export const removeFromCart = (id) => (dispatch, getState) => {
   dispatch({
