@@ -1,11 +1,13 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit'
 import { productListReducer, productDetailsReducer } from './reducers/productReducer'
 import {cartReducer} from './reducers/cartReducer'
+import {userLoginReducer} from './reducers/userReducer'
 
 const rootReducer = combineReducers({
   productList: productListReducer,
   productDetails: productDetailsReducer,
-  cart: cartReducer
+  cart: cartReducer,
+  userLogin: userLoginReducer
 })
 
 const cartItemsFromStorage = localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []
