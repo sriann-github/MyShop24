@@ -8,6 +8,9 @@ import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
 import ProductScreen from './Screens/ProductScreen'
 import CartScreen from './Screens/CartScreen'
 import LoginScreen from './Screens/LoginScreen'
+import ShippingScreen from './Screens/ShippingScreen';
+import PaymentScreen from './Screens/PaymentScreen';
+
 
 
 const App = () => {
@@ -23,6 +26,8 @@ const App = () => {
               <Route path="/cart" exact element={<CartScreen />} />
               <Route path="cart/:id" exact element={<CartScreen />} />
               <Route path="/login" exact element={<LoginScreen />}></Route>
+              <Route path="/shipping" exact element={<ShippingScreen />}></Route>
+              <Route path="/payment" exact element={<PaymentScreen />}></Route>
             </Routes>            
           </Container>
         </main>

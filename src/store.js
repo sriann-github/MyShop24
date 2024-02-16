@@ -22,7 +22,7 @@ const initialState = {
   cart:{
     cartItems: cartItemsFromStorage,
     shippingAddress: shippingAddressFromStorage,
-    paymentMethos: paymentMethodFromStorage
+    paymentMethod: paymentMethodFromStorage
   },
     userLogin: {userInfo: userInfoFromStorage}
   }
